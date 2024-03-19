@@ -4,6 +4,7 @@ import org.junit.*
 import org.junit.Assert.*
 
 import tasks.Shape.*
+import tasks.Shape
 
 class Tests {
     @Test def testPerimeter() =
