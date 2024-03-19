@@ -1,3 +1,5 @@
+package tasks
+
 object functions extends App :
     //Task 2a, svolto da solo
     val isPositive: Int => String = n => n match
@@ -113,4 +115,39 @@ object functions extends App :
     println(gcd(5, 10)) //5
     println(gcd(12, 8)) //4
 
-        
+    //Task 4, svolto da solo
+
+enum Shape():
+    case Rectangle(h: Double, b: Double)
+    case Circle(r: Double)
+    case Square(l: Double)
+
+object Shape:
+    def perimeter(shape: Shape): Double = shape match
+        case Rectangle(h, b) => h * 2 + b * 2
+        case Circle(r) => r * 2 * Math.PI
+        case Square(l) => l * 4
+
+    def scale(shape: Shape, alpha: Double): Shape = shape match
+        case Rectangle(h, b) => Rectangle(h * alpha, b * alpha)
+        case Circle(r) => Circle(r * alpha)
+        case Square(l) => Square(l * alpha)
+    
+
+import org.junit.* 
+import org.junit.Assert.*
+
+import tasks.Shape.*
+
+class Tests {
+    @Test def testPerimeter() =
+        assertEquals(10.0, perimeter(Rectangle(2, 3)), 0)
+        assertEquals(Math.PI * 4, perimeter(Circle(2)), 0)
+        assertEquals(16.0, perimeter(Square(4)), 0)
+    
+    @Test def testScale() =
+        assertEquals(Rectangle(4, 6), scale(Rectangle(2, 3), 2))
+        assertEquals(Circle(8), scale(Circle(2), 4))
+        assertEquals(Square(10), scale(Square(5), 2))
+
+}
